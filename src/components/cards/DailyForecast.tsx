@@ -1,6 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import Card from "./Card";
 import { getWeather } from "../../api";
+import WeatherIcon from "../WeatherIcon";
 
 export default function DailyForecast() {
   const { data } = useSuspenseQuery({
@@ -17,11 +18,7 @@ export default function DailyForecast() {
               weekday: "short",
             })}
           </p>
-          <img
-            className="size-8"
-            src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
-            alt={`${day.weather[0].description} icon`}
-          />
+          <WeatherIcon weather={day.weather[0]} />
           <p>{Math.round(day.temp.day)}°C</p>
           <p className="text-gray-500/75">{Math.round(day.temp.min)}°C</p>
           <p className="text-gray-500/75">{Math.round(day.temp.max)}°C</p>

@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --text: #6b6375;
+  --text: rgba(255, 255, 255, 0.87);
   --text-h: #08060d;
-  --bg: #fff;
+  --bg: #242424;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
   --accent: #aa3bff;
@@ -16,6 +16,7 @@
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
+  --line-height: 1.5;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -23,6 +24,7 @@
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
+  font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
