@@ -14,7 +14,7 @@ export default function Map() {
       zoom={13}
       style={{ height: "500px", width: "700px" }}
     >
-      <MapClick />
+      <MapClick lat={lat} lon={lon} />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -25,14 +25,15 @@ export default function Map() {
 }
 
 // in order to directly reference the map container
-function MapClick() {
+function MapClick({ lat, lon }: { lat: number; lon: number }) {
   const { onMapClick } = useContext(CoordsContext);
   const map = useMap();
+  map.panTo([lat, lon]); // any time coordinates change, pan the map to the new location
 
   // called when clicking on the map
   map.on("click", (e) => {
     const { lat, lng } = e.latlng;
-    map.panTo([lat, lng]);
+
     onMapClick(lat, lng);
   });
 

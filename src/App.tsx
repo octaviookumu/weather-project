@@ -6,21 +6,42 @@ import Map from "./components/Map";
 import { useState } from "react";
 import type { Coords } from "./types";
 import { CoordsContext } from "./context/map-context";
+import LocationDropdown from "./components/dropdowns/LocationDropdown";
+import { useQuery } from "@tanstack/react-query";
+import { getGetCode } from "./api";
 
 function App() {
-  const [coords, setCoords] = useState<Coords>({
+  const [coordinates, setCoords] = useState<Coords>({
     lat: 10,
     lon: 25,
   });
+  const [location, setLocation] = useState<string>("Barcelona");
+
+  const { data: geocodeData } = useQuery({
+    queryKey: ["geocode", location],
+    queryFn: () => getGetCode(location),
+  });
 
   const onMapClick = (lat: number, lon: number) => {
-    console.log("Map clicked at:", lat, lon);
     setCoords({ lat, lon });
+    setLocation("custom");
+  };
+
+  const coords =
+    location === "custom"
+      ? coordinates
+      : { lat: geocodeData?.[0].lat ?? 0, lon: geocodeData?.[0].lon ?? 0 };
+
+  const onSetLocation = (location: string) => {
+    setLocation(location);
   };
 
   return (
-    <CoordsContext.Provider value={{ coords, onMapClick }}>
+    <CoordsContext.Provider
+      value={{ coords, onMapClick, location, onSetLocation }}
+    >
       <div className="flex flex-col gap-8">
+        <LocationDropdown />
         <Map />
         <CurrentWeather />
         <HourlyForecast />
