@@ -22,6 +22,7 @@ function App() {
   const { data: geocodeData } = useQuery({
     queryKey: ["geocode", location],
     queryFn: () => getGetCode(location),
+    enabled: location !== "custom",
   });
 
   const onMapClick = (lat: number, lon: number) => {
@@ -39,7 +40,6 @@ function App() {
   };
 
   const onSetMapType = (type: string) => {
-    console.log("Setting map type to:", type);
     setMapType(type);
   };
 
