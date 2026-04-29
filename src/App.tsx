@@ -56,8 +56,14 @@ function App() {
     >
       <div className="flex flex-col gap-8">
         <div className="flex gap-8">
-          <LocationDropdown />
-          <MapTypeDropdown />
+          <div className="flex gap-4">
+            <h1 className="text-2xl font-semibold">Location: </h1>
+            <LocationDropdown />
+          </div>
+          <div className="flex gap-4">
+            <h1 className="text-2xl font-semibold">Map Type: </h1>
+            <MapTypeDropdown />
+          </div>
         </div>
         <Map />
         <CurrentWeather />

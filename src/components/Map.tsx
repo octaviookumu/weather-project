@@ -15,7 +15,7 @@ export default function Map() {
     <MapContainer
       center={[lat, lon]}
       zoom={13}
-      style={{ height: "500px", width: "700px" }}
+      style={{ height: "500px", width: "1000px" }}
     >
       <MapClick lat={lat} lon={lon} />
       <TileLayer
