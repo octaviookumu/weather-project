@@ -9,6 +9,7 @@ import { CoordsContext } from "./context/map-context";
 import LocationDropdown from "./components/dropdowns/LocationDropdown";
 import { useQuery } from "@tanstack/react-query";
 import { getGetCode } from "./api";
+import MapTypeDropdown from "./components/dropdowns/MapTypeDropdown";
 
 function App() {
   const [coordinates, setCoords] = useState<Coords>({
@@ -16,6 +17,7 @@ function App() {
     lon: 25,
   });
   const [location, setLocation] = useState<string>("Barcelona");
+  const [mapType, setMapType] = useState<string>("clouds_new");
 
   const { data: geocodeData } = useQuery({
     queryKey: ["geocode", location],
@@ -36,12 +38,27 @@ function App() {
     setLocation(location);
   };
 
+  const onSetMapType = (type: string) => {
+    console.log("Setting map type to:", type);
+    setMapType(type);
+  };
+
   return (
     <CoordsContext.Provider
-      value={{ coords, onMapClick, location, onSetLocation }}
+      value={{
+        coords,
+        onMapClick,
+        location,
+        onSetLocation,
+        mapType,
+        onSetMapType,
+      }}
     >
       <div className="flex flex-col gap-8">
-        <LocationDropdown />
+        <div className="flex gap-8">
+          <LocationDropdown />
+          <MapTypeDropdown />
+        </div>
         <Map />
         <CurrentWeather />
         <HourlyForecast />

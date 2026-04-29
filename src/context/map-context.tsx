@@ -6,6 +6,8 @@ export const CoordsContext = createContext<{
   onMapClick: (lat: number, lon: number) => void;
   location: string;
   onSetLocation: (location: string) => void;
+  mapType: string;
+  onSetMapType: (type: string) => void;
 }>({
   coords: { lat: 0, lon: 0 },
   onMapClick: () => {
@@ -14,5 +16,9 @@ export const CoordsContext = createContext<{
   location: "Barcelona",
   onSetLocation: () => {
     throw new Error("onSetLocation called outside CoordsProvider");
+  },
+  mapType: "clouds_new",
+  onSetMapType: () => {
+    throw new Error("onSetMapType called outside CoordsProvider");
   },
 });

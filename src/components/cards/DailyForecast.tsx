@@ -23,8 +23,12 @@ export default function DailyForecast() {
           </p>
           <WeatherIcon weather={day.weather[0]} />
           <p>{Math.round(day.temp.day)}°C</p>
-          <p className="text-gray-500/75">{Math.round(day.temp.min)}°C</p>
-          <p className="text-gray-500/75">{Math.round(day.temp.max)}°C</p>
+          <p className="text-gray-500/75" title="Daily min temp">
+            {Math.round(day.temp.min)}°C
+          </p>
+          <p className="text-gray-500/75" title="Daily max temp">
+            {Math.round(day.temp.max)}°C
+          </p>
         </div>
       ))}
     </Card>

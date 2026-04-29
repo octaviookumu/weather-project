@@ -3,9 +3,12 @@ import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import { CoordsContext } from "../context/map-context";
 import { useContext } from "react";
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 export default function Map() {
   const {
     coords: { lat, lon },
+    mapType,
   } = useContext(CoordsContext);
 
   return (
@@ -18,6 +21,9 @@ export default function Map() {
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <TileLayer
+        url={`https://tile.openweathermap.org/map/${mapType}/{z}/{x}/{y}.png?appid=${API_KEY}`}
       />
       <Marker position={[lat, lon]} />
     </MapContainer>
