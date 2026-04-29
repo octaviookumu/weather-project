@@ -1,11 +1,15 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import Card from "./Card";
 import { getWeather } from "../../api";
+import WeatherIcon from "../WeatherIcon";
+import { useContext } from "react";
+import { CoordsContext } from "../../context/map-context";
 
 export default function DailyForecast() {
+  const { coords } = useContext(CoordsContext);
   const { data } = useSuspenseQuery({
-    queryKey: ["weather"],
-    queryFn: () => getWeather({ lat: 50, lon: 50 }),
+    queryKey: ["weather", coords],
+    queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon }),
   });
 
   return (
@@ -17,14 +21,14 @@ export default function DailyForecast() {
               weekday: "short",
             })}
           </p>
-          <img
-            className="size-8"
-            src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
-            alt={`${day.weather[0].description} icon`}
-          />
+          <WeatherIcon weather={day.weather[0]} />
           <p>{Math.round(day.temp.day)}°C</p>
-          <p className="text-gray-500/75">{Math.round(day.temp.min)}°C</p>
-          <p className="text-gray-500/75">{Math.round(day.temp.max)}°C</p>
+          <p className="text-gray-500/75" title="Daily min temp">
+            {Math.round(day.temp.min)}°C
+          </p>
+          <p className="text-gray-500/75" title="Daily max temp">
+            {Math.round(day.temp.max)}°C
+          </p>
         </div>
       ))}
     </Card>

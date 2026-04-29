@@ -90,3 +90,5 @@ export const OneCallWeatherSchema = z.object({
   hourly: z.array(HourlySchema).optional(),
   daily: z.array(DailySchema).optional(),
 });
+
+export type Weather = z.infer<typeof WeatherSchema>;
