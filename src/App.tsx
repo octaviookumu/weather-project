@@ -15,6 +15,7 @@ import CurrentSkeleton from "./components/skeletons/CurrentSkeleton";
 import DailySkeleton from "./components/skeletons/DailySkeleton";
 import AdditionalInfoSkeleton from "./components/skeletons/AdditionalInfoSkeleton";
 import HourlySkeleton from "./components/skeletons/HourlySkeleton";
+import SidePanel from "./components/SidePanel";
 
 function App() {
   const [coordinates, setCoords] = useState<Coords>({
@@ -59,34 +60,37 @@ function App() {
         onSetMapType,
       }}
     >
-      <div className="flex flex-col gap-8">
-        <div className="flex gap-8">
-          <div className="flex gap-4">
-            <h1 className="text-2xl font-semibold">Location: </h1>
-            <LocationDropdown />
+      <>
+        <div className="flex flex-col gap-8">
+          <div className="flex gap-8">
+            <div className="flex gap-4">
+              <h1 className="text-2xl font-semibold">Location: </h1>
+              <LocationDropdown />
+            </div>
+            <div className="flex gap-4">
+              <h1 className="text-2xl font-semibold">Map Type: </h1>
+              <MapTypeDropdown />
+            </div>
           </div>
-          <div className="flex gap-4">
-            <h1 className="text-2xl font-semibold">Map Type: </h1>
-            <MapTypeDropdown />
+          <div className="relative">
+            <Map />
+            <MapLegend mapType={mapType} />
           </div>
+          <Suspense fallback={<CurrentSkeleton />}>
+            <CurrentWeather />
+          </Suspense>
+          <Suspense fallback={<HourlySkeleton />}>
+            <HourlyForecast />
+          </Suspense>
+          <Suspense fallback={<DailySkeleton />}>
+            <DailyForecast />
+          </Suspense>
+          <Suspense fallback={<AdditionalInfoSkeleton />}>
+            <AdditionalInfo />
+          </Suspense>
         </div>
-        <div className="relative">
-          <Map />
-          <MapLegend mapType={mapType} />
-        </div>
-        <Suspense fallback={<CurrentSkeleton />}>
-          <CurrentWeather />
-        </Suspense>
-        <Suspense fallback={<HourlySkeleton />}>
-          <HourlyForecast />
-        </Suspense>
-        <Suspense fallback={<DailySkeleton />}>
-          <DailyForecast />
-        </Suspense>
-        <Suspense fallback={<AdditionalInfoSkeleton />}>
-          <AdditionalInfo />
-        </Suspense>
-      </div>
+        <SidePanel />
+      </>
     </CoordsContext.Provider>
   );
 }
