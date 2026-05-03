@@ -21,17 +21,17 @@ export default function AdditionalInfo() {
   return (
     <Card
       title="Additional Weather Info"
-      childrenClassName="flex flex-col gap-8"
+      childrenClassName="grid grid-cols-1 md:grid-cols-2 gap-8"
     >
       {rows.map(({ label, value, Icon }) => (
         <div className="flex justify-between" key={value}>
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-2">
             <span className="text-gray-500">{label}</span>
-            <Icon className="size-6 invert" />
+            <Icon className="size-6" />
           </div>
-          <div className="flex items-center gap-2">
+          <span>
             <FormatComponent value={value} number={data.current[value]} />
-          </div>
+          </span>
         </div>
       ))}
     </Card>
