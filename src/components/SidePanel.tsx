@@ -13,6 +13,7 @@ import clsx from "clsx";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import Information from "/src/assets/information.svg?react";
 import Chevron from "/src/assets/ChevronLeft.svg?react";
+import SidePanelSkeleton from "./skeletons/SidePanelSkeleton";
 
 type SidePanelProps = {
   isSidePanelOpen: boolean;
@@ -32,7 +33,7 @@ export default function SidePanel(props: SidePanelProps) {
         <Chevron className="size-8 invert -ml-2" />
       </button>
       {/* only contents of the side panel to disappear */}
-      <Suspense>
+      <Suspense fallback={<SidePanelSkeleton />}>
         <AirPollution />
       </Suspense>
     </div>
