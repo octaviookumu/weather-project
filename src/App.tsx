@@ -65,46 +65,46 @@ function App() {
     >
       <>
         <MobileHeader setIsSidePanelOpen={setIsSidePanelOpen} />
-        <div className="flex flex-col gap-8 p-8 pt-4 xs:pt-8 lg:w-[calc(100dvw-var(--sidebar-width))] 2xl:h-screen 2xl:min-h[1120px]">
-          <div className="flex flex-col gap-4 xs:flex-row xs:gap-8 ">
-            <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+        <div className="xs:pt-8 2xl:min-h[1120px] flex flex-col gap-8 p-8 pt-4 lg:w-[calc(100dvw-var(--sidebar-width))] 2xl:h-screen">
+          <div className="xs:flex-row xs:gap-8 flex flex-col gap-4">
+            <div className="flex flex-col gap-2 md:flex-row md:gap-4">
               <h1 className="text-2xl font-semibold">Location: </h1>
               <LocationDropdown />
             </div>
-            <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+            <div className="flex flex-col gap-2 md:flex-row md:gap-4">
               <h1 className="text-2xl font-semibold whitespace-nowrap">
                 Map Type:{" "}
               </h1>
               <MapTypeDropdown />
             </div>
             <button
-              className="hidden xs:block"
+              className="xs:block hidden"
               onClick={() => setIsSidePanelOpen(true)}
             >
-              <Hamburger className="size-8 invert ml-auto lg:hidden" />
+              <Hamburger className="ml-auto size-8 invert lg:hidden" />
             </button>
           </div>
-          <div className="grid grid-cols-1 2xl:flex-1 2xl:min-h-0 md:grid-cols-2 2xl:grid-cols-4 2xl:grid-rows-4 gap-4">
-            <div className="relative h-120 2xl:h-auto col-span-1 md:col-span-2 2xl:col-span-4 2xl:row-span-2 order-1">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:min-h-0 2xl:flex-1 2xl:grid-cols-4 2xl:grid-rows-4">
+            <div className="relative order-1 col-span-1 h-120 md:col-span-2 2xl:col-span-4 2xl:row-span-2 2xl:h-auto">
               <Map />
               <MapLegend mapType={mapType} />
             </div>
-            <div className="col-span-1 2xl:row-span-2 order-2">
+            <div className="order-2 col-span-1 2xl:row-span-2">
               <Suspense fallback={<CurrentSkeleton />}>
                 <CurrentWeather />
               </Suspense>
             </div>
-            <div className="col-span-1 2xl:row-span-2 order-3 2xl:order-4">
+            <div className="order-3 col-span-1 2xl:order-4 2xl:row-span-2">
               <Suspense fallback={<DailySkeleton />}>
                 <DailyForecast />
               </Suspense>
             </div>
-            <div className="col-span-1 md:col-span-2 2xl:row-span-1 order-4 2xl:order-3">
+            <div className="order-4 col-span-1 md:col-span-2 2xl:order-3 2xl:row-span-1">
               <Suspense fallback={<HourlySkeleton />}>
                 <HourlyForecast />
               </Suspense>
             </div>
-            <div className="col-span-1 md:col-span-2 2xl:row-span-1 order-5">
+            <div className="order-5 col-span-1 md:col-span-2 2xl:row-span-1">
               <Suspense fallback={<AdditionalInfoSkeleton />}>
                 <AdditionalInfo />
               </Suspense>

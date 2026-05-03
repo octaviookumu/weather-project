@@ -7,7 +7,7 @@ type Props = {
 
 export default function MobileHeader({ setIsSidePanelOpen }: Props) {
   return (
-    <div className="w-full h-16 p-4 bg-background sticky top-0 xs:hidden flex gap-8 justify-end z-1001">
+    <div className="bg-background xs:hidden sticky top-0 z-1001 flex h-16 w-full justify-end gap-8 p-4">
       <button onClick={() => setIsSidePanelOpen(true)}>
         <Hamburger className="size-6" />
       </button>

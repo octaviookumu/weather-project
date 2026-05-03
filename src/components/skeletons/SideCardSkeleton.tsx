@@ -5,20 +5,20 @@ export default function SideCardSkeleton() {
   return (
     <Card
       childrenClassName="flex flex-col gap-3"
-      className="hover:scale-105 transition-transform duration-300 from-sidebar-accent to-sidebar-accent/60 gap-0!"
+      className="from-sidebar-accent to-sidebar-accent/60 gap-0! transition-transform duration-300 hover:scale-105"
     >
       <div className="flex justify-between">
-        <Skeleton className="w-12 h-7 bg-sidebar" />
-        <Skeleton className="w-12 h-7 bg-sidebar" />
+        <Skeleton className="bg-sidebar h-7 w-12" />
+        <Skeleton className="bg-sidebar h-7 w-12" />
       </div>
-      <Skeleton className="w-full h-1.5 bg-sidebar" />
+      <Skeleton className="bg-sidebar h-1.5 w-full" />
       <div className="flex justify-between text-xs">
-        <Skeleton className="w-2 h-4 bg-sidebar" />
-        <Skeleton className="w-2 h-4 bg-sidebar" />
+        <Skeleton className="bg-sidebar h-4 w-2" />
+        <Skeleton className="bg-sidebar h-4 w-2" />
       </div>
       <div className="flex justify-between">
         {Array.from({ length: 5 }).map((_, index) => (
-          <Skeleton key={index} className="w-15 h-6 bg-sidebar" />
+          <Skeleton key={index} className="bg-sidebar h-6 w-15" />
         ))}
       </div>
     </Card>

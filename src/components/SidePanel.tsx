@@ -25,12 +25,12 @@ export default function SidePanel(props: SidePanelProps) {
   return (
     <div
       className={clsx(
-        "fixed top-0 right-0 h-screen w-(--sidebar-width) shadow-md bg-sidebar z-1001 py-8 px-4 overflow-y-scroll transition-transform duration-300 lg:translate-x-0!",
+        "bg-sidebar fixed top-0 right-0 z-1001 h-screen w-(--sidebar-width) overflow-y-scroll px-4 py-8 shadow-md transition-transform duration-300 lg:translate-x-0!",
         isSidePanelOpen ? "translate-x-0" : "translate-x-full",
       )}
     >
       <button onClick={() => setIsSidePanelOpen(false)}>
-        <Chevron className="size-8 invert -ml-2 lg:hidden" />
+        <Chevron className="-ml-2 size-8 invert lg:hidden" />
       </button>
       {/* only contents of the side panel to disappear */}
       <Suspense fallback={<SidePanelSkeleton />}>
@@ -105,7 +105,7 @@ function AirPollution() {
           <Card
             key={key}
             childrenClassName="flex flex-col gap-3"
-            className="hover:scale-105 transition-transform duration-300 from-sidebar-accent to-sidebar-accent/60 gap-0!"
+            className="from-sidebar-accent to-sidebar-accent/60 gap-0! transition-transform duration-300 hover:scale-105"
           >
             <div className="flex justify-between">
               <div className="flex items-center gap-2">
@@ -134,7 +134,7 @@ function AirPollution() {
                 <span
                   key={i}
                   className={clsx(
-                    "px-2 py-1 rounded-md text-xs font-medium",
+                    "rounded-md px-2 py-1 text-xs font-medium",
                     quality === currentLevel
                       ? qualityColor
                       : "bg-muted text-muted-foreground",

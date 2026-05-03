@@ -11,7 +11,7 @@ export default function DailySkeleton() {
       show 8 skeletons for the 8 days of the forecast */}
       {Array.from({ length: 8 }).map((_, index) => (
         <div key={index} className="flex justify-between">
-          <Skeleton className="w-9 h-8" />
+          <Skeleton className="h-8 w-9" />
           <Skeleton className="size-8 rounded-full" />
           <Skeleton className="size-8" />
           <Skeleton className="size-8" />

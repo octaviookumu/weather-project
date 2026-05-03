@@ -12,15 +12,15 @@ export default function MapLegend({ mapType }: Props) {
     .join(", ");
 
   return (
-    <div className="absolute top-4 right-4 z-1000 w-48 xs:w-96 rounded-xl shadow-lg p-4 bg-background/50 border border-accent/70 flex flex-col gap-4">
-      <h3 className="text-sm font-semibold text-foreground">{data.title}</h3>
+    <div className="xs:w-96 bg-background/50 border-accent/70 absolute top-4 right-4 z-1000 flex w-48 flex-col gap-4 rounded-xl border p-4 shadow-lg">
+      <h3 className="text-foreground text-sm font-semibold">{data.title}</h3>
       <div
-        className="w-full h-6 rounded-xl border border-accent/70"
+        className="border-accent/70 h-6 w-full rounded-xl border"
         style={{
           background: `linear-gradient(to right, ${gradientStops})`,
         }}
       />
-      <div className="flex justify-between text-xs text-foreground">
+      <div className="text-foreground flex justify-between text-xs">
         <span>
           {data.stops[0].value} {data.unit}
         </span>
@@ -36,7 +36,7 @@ const mapTypeData: Record<
   string,
   { title: string; unit: string; stops: ColorStop[] }
 > = {
-  "precipitation_new": {
+  precipitation_new: {
     title: "Rain (mm)",
     unit: "mm",
     stops: [
@@ -49,7 +49,7 @@ const mapTypeData: Record<
       { value: 140, color: "rgba(20, 20, 255, 0.9)" },
     ],
   },
-  "temp_new": {
+  temp_new: {
     title: "Temperature (°C)",
     unit: "°C",
     stops: [
@@ -67,7 +67,7 @@ const mapTypeData: Record<
       { value: 30, color: "rgba(252, 128, 20, 1)" },
     ],
   },
-  "clouds_new": {
+  clouds_new: {
     title: "Clouds (%)",
     unit: "%",
     stops: [
@@ -84,7 +84,7 @@ const mapTypeData: Record<
       { value: 100, color: "rgba(240, 240, 255, 1)" },
     ],
   },
-  "pressure_new": {
+  pressure_new: {
     title: "Pressure (Pa)",
     unit: "Pa",
     stops: [
@@ -99,7 +99,7 @@ const mapTypeData: Record<
       { value: 108000, color: "rgba(198, 0, 0, 1)" },
     ],
   },
-  "wind_new": {
+  wind_new: {
     title: "Wind (m/s)",
     unit: "m/s",
     stops: [

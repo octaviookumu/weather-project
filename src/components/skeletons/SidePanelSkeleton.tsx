@@ -11,7 +11,6 @@ export default function SidePanelSkeleton() {
       </div>
       {Array.from({ length: 8 }).map((_, index) => (
         <SideCardSkeleton key={index} />
-        
       ))}
     </div>
   );
