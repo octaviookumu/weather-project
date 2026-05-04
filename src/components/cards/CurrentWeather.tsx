@@ -14,14 +14,15 @@ export default function CurrentWeather() {
   return (
     <Card
       title="Current Weather"
-      childrenClassName="flex flex-col items-center gap-6"
+      childrenClassName="flex flex-col items-center gap-6 2xl:justify-between"
+      className="md:pb-11"
     >
-      <div className="flex flex-col gap-2 items-center">
-        <h2 className="text-6xl font-semibold text-center">
+      <div className="flex flex-col items-center gap-2">
+        <h2 className="text-center text-6xl font-semibold">
           {Math.round(data.current.temp)}°C
         </h2>
         <WeatherIcon weather={data.current.weather[0]} imgClassName="size-14" />
-        <h3 className="capitalize text-xl">
+        <h3 className="text-xl capitalize">
           {data.current.weather[0].description}
         </h3>
       </div>
@@ -36,7 +37,7 @@ export default function CurrentWeather() {
           }).format(new Date(data.current.dt * 1000))}
         </h3>
       </div>
-      <div className="flex justify-between w-full">
+      <div className="flex w-full justify-between">
         <div className="flex flex-col items-center gap-2">
           <p className="text-gray-500">Feels like</p>
           <p>{Math.round(data.current.feels_like)}°C</p>

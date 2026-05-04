@@ -13,7 +13,7 @@ export default function MapTypeDropdown() {
 
   return (
     <Select value={mapType} onValueChange={onSetMapType}>
-      <SelectTrigger className="w-full xs:w-45">
+      <SelectTrigger className="xs:w-45 w-full">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>
       <SelectContent className="z-1001">

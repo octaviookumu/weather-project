@@ -8,27 +8,30 @@ import Uv from "/src/assets/uv.svg?react";
 import Wind from "/src/assets/wind.svg?react";
 import Pressure from "/src/assets/pressure.svg?react";
 import UpArrow from "/src/assets/uparrow.svg?react";
+import { useContext } from "react";
+import { CoordsContext } from "@/context/map-context";
 
 export default function AdditionalInfo() {
+  const { coords } = useContext(CoordsContext);
   const { data } = useSuspenseQuery({
-    queryKey: ["weather"],
-    queryFn: () => getWeather({ lat: 50, lon: 50 }),
+    queryKey: ["weather", coords],
+    queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon }),
   });
 
   return (
     <Card
       title="Additional Weather Info"
-      childrenClassName="flex flex-col gap-8"
+      childrenClassName="grid grid-cols-1 md:grid-cols-2 gap-8"
     >
       {rows.map(({ label, value, Icon }) => (
         <div className="flex justify-between" key={value}>
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-2">
             <span className="text-gray-500">{label}</span>
-            <Icon className="size-6 invert" />
+            <Icon className="size-6" />
           </div>
-          <div className="flex items-center gap-2">
+          <span>
             <FormatComponent value={value} number={data.current[value]} />
-          </div>
+          </span>
         </div>
       ))}
     </Card>
@@ -46,7 +49,7 @@ function FormatComponent({ value, number }: { value: string; number: number }) {
   if (value === "wind_deg")
     return (
       <UpArrow
-        className="size-6 invert"
+        className="size-6"
         style={{ transform: `rotate(${number}deg)` }}
       />
     );
