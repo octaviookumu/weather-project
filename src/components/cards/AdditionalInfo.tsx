@@ -49,7 +49,7 @@ function FormatComponent({ value, number }: { value: string; number: number }) {
   if (value === "wind_deg")
     return (
       <UpArrow
-        className="size-6 invert"
+        className="size-6"
         style={{ transform: `rotate(${number}deg)` }}
       />
     );

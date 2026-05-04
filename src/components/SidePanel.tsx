@@ -30,7 +30,7 @@ export default function SidePanel(props: SidePanelProps) {
       )}
     >
       <button onClick={() => setIsSidePanelOpen(false)}>
-        <Chevron className="-ml-2 size-8 invert lg:hidden" />
+        <Chevron className="-ml-2 size-8 lg:hidden" />
       </button>
       {/* only contents of the side panel to disappear */}
       <Suspense fallback={<SidePanelSkeleton />}>

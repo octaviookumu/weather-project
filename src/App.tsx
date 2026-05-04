@@ -18,6 +18,7 @@ import HourlySkeleton from "./components/skeletons/HourlySkeleton";
 import SidePanel from "./components/SidePanel";
 import Hamburger from "/src/assets/hamburger.svg?react";
 import MobileHeader from "./components/MobileHeader";
+import LightDarkToggle from "./components/LightDarkToggle";
 
 function App() {
   const [coordinates, setCoords] = useState<Coords>({
@@ -77,12 +78,17 @@ function App() {
               </h1>
               <MapTypeDropdown />
             </div>
-            <button
-              className="xs:block hidden"
-              onClick={() => setIsSidePanelOpen(true)}
-            >
-              <Hamburger className="ml-auto size-8 invert lg:hidden" />
-            </button>
+            <div className="ml-auto flex items-center gap-4">
+              <div className="xs:block hidden">
+                <LightDarkToggle />
+              </div>
+              <button
+                onClick={() => setIsSidePanelOpen(true)}
+                className="xs:block hidden"
+              >
+                <Hamburger className="size-6 lg:hidden" />
+              </button>
+            </div>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:min-h-0 2xl:flex-1 2xl:grid-cols-4 2xl:grid-rows-4">
             <div className="relative order-1 col-span-1 h-120 md:col-span-2 2xl:col-span-4 2xl:row-span-2 2xl:h-auto">
